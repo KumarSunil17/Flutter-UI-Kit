@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 class CommonSwitch extends StatelessWidget {
   final defValue;
-  CommonSwitch({this.defValue = false});
+  const CommonSwitch({super.key, this.defValue = false});
   @override
   Widget build(BuildContext context) {
     return defaultTargetPlatform == TargetPlatform.android

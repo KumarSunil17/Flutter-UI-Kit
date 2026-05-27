@@ -4,10 +4,12 @@ import 'package:flutter_uikit/ui/widgets/common_scaffold.dart';
 import 'package:flutter_uikit/ui/widgets/profile_tile.dart';
 
 class ProfileOnePage extends StatelessWidget {
-  var deviceSize;
+  late Size deviceSize;
+
+  ProfileOnePage({super.key});
 
   //Column1
-  Widget profileColumn() => Container(
+  Widget profileColumn() => SizedBox(
         height: deviceSize.height * 0.24,
         child: FittedBox(
           alignment: Alignment.center,
@@ -33,8 +35,8 @@ class ProfileOnePage extends StatelessWidget {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius:
-                              new BorderRadius.all(new Radius.circular(40.0)),
-                          border: new Border.all(
+                              BorderRadius.all(Radius.circular(40.0)),
+                          border: Border.all(
                             color: Colors.black,
                             width: 2.0,
                           ),
@@ -63,7 +65,7 @@ class ProfileOnePage extends StatelessWidget {
   //column2
 
   //column3
-  Widget descColumn() => Container(
+  Widget descColumn() => SizedBox(
         height: deviceSize.height * 0.13,
         child: Center(
           child: Padding(
@@ -81,7 +83,7 @@ class ProfileOnePage extends StatelessWidget {
   //column4
   Widget accountColumn() => FittedBox(
         fit: BoxFit.fill,
-        child: Container(
+        child: SizedBox(
           height: deviceSize.height * 0.3,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -173,7 +175,7 @@ class ProfileOnePage extends StatelessWidget {
   }
 }
 
-Widget followColumn(Size deviceSize) => Container(
+Widget followColumn(Size deviceSize) => SizedBox(
       height: deviceSize.height * 0.13,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

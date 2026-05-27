@@ -6,16 +6,16 @@ import 'package:flutter_uikit/utils/uidata.dart';
 class ProductCard extends StatefulWidget {
   final Product product;
 
-  const ProductCard({Key key, this.product}) : super(key: key);
+  const ProductCard({super.key, required this.product});
   @override
-  _ProductCardState createState() => new _ProductCardState();
+  _ProductCardState createState() => _ProductCardState();
 }
 
 class _ProductCardState extends State<ProductCard>
     with SingleTickerProviderStateMixin {
-  var deviceSize;
-  AnimationController controller;
-  Animation<double> animation;
+  late Size deviceSize;
+  late AnimationController controller;
+  late Animation<double> animation;
 
   Widget productCard() {
     var cardHeight = deviceSize.height * 0.8;
@@ -23,35 +23,35 @@ class _ProductCardState extends State<ProductCard>
     return Card(
       clipBehavior: Clip.antiAlias,
       elevation: 1.0,
-      shape: new RoundedRectangleBorder(
-          borderRadius: new BorderRadius.circular(15.0)),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0)),
       color: Colors.white,
       child: Ink(
         height: cardHeight,
         width: cardWidth,
-        child: new Stack(
+        child: Stack(
           children: <Widget>[
-            Container(
+            SizedBox(
               height: cardHeight - cardHeight / 2 * 1.1,
               width: double.infinity,
-              child: new Image.network(
+              child: Image.network(
                 widget.product.image,
                 fit: BoxFit.cover,
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: new Container(
+              child: Container(
                 width: double.infinity,
                 height: cardHeight / 2 * 1.2,
-                decoration: new BoxDecoration(
-                  gradient: new LinearGradient(colors: UIData.kitGradients),
-                  borderRadius: new BorderRadius.only(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: UIData.kitGradients),
+                  borderRadius: BorderRadius.only(
                       topLeft: const Radius.circular(30.0),
                       topRight: const Radius.circular(30.0)),
                   color: Colors.white,
                 ),
-                child: new ProductDesc(product: widget.product),
+                child: ProductDesc(product: widget.product),
               ),
             ),
           ],
@@ -63,11 +63,11 @@ class _ProductCardState extends State<ProductCard>
   @override
   initState() {
     super.initState();
-    controller = new AnimationController(
-        vsync: this, duration: new Duration(milliseconds: 1500));
-    animation = new Tween(begin: 0.0, end: 1.0).animate(
-        new CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn));
-    animation.addListener(() => this.setState(() {}));
+    controller = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1500));
+    animation = Tween(begin: 0.0, end: 1.0).animate(
+        CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn));
+    animation.addListener(() => setState(() {}));
     controller.forward();
   }
 

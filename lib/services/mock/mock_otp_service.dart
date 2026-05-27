@@ -29,5 +29,5 @@ class MockOTPService implements IOTPService {
   }
 }
 
-var kOTPResponse = new OTPResponse(
+var kOTPResponse = OTPResponse(
     data: const OTPData(authToken: "abcd", userId: "1245"), status: "success");

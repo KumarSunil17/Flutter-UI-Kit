@@ -4,6 +4,8 @@ import 'package:flutter_uikit/ui/widgets/common_scaffold.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DashboardTwoPage extends StatelessWidget {
+  const DashboardTwoPage({super.key});
+
   Widget bodyData() => SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),

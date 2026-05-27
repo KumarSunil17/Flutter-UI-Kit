@@ -8,8 +8,10 @@ import 'package:flutter_uikit/ui/page/shopping/shopping_two/product_detail_widge
 import 'package:flutter_uikit/ui/widgets/login_background.dart';
 
 class ProductDetailPage extends StatelessWidget {
-  Widget productScaffold(Stream<List<Product>> products) => new Scaffold(
-      backgroundColor: new Color(0xffeeeeee),
+  const ProductDetailPage({super.key});
+
+  Widget productScaffold(Stream<List<Product>> products) => Scaffold(
+      backgroundColor: Color(0xffeeeeee),
       body: StreamBuilder<List<Product>>(
           stream: products,
           builder: (context, snapshot) {
@@ -20,7 +22,7 @@ class ProductDetailPage extends StatelessWidget {
                       LoginBackground(
                         showIcon: false,
                       ),
-                      ProductDetailWidgets(product:snapshot.data[0]),
+                      ProductDetailWidgets(product: snapshot.data![0]),
                     ],
                   )
                 : Center(child: CircularProgressIndicator());

@@ -3,14 +3,13 @@ import 'package:flutter_uikit/services/mock/mock_otp_service.dart';
 import 'package:flutter_uikit/services/real/real_otp_service.dart';
 import 'package:flutter_uikit/services/restclient.dart';
 
-enum Flavor { MOCK, PRO }
+enum Flavor { mock, pro }
 
-//Simple DI
 class Injector {
-  static final Injector _singleton = new Injector._internal();
-  static Flavor _flavor;
+  static final Injector _singleton = Injector._internal();
+  static late Flavor _flavor;
 
-  static void configure(Flavor flavor) async {
+  static void configure(Flavor flavor) {
     _flavor = flavor;
   }
 
@@ -20,10 +19,10 @@ class Injector {
 
   IOTPService get otpService {
     switch (_flavor) {
-      case Flavor.MOCK:
+      case Flavor.mock:
         return MockOTPService();
-      default:
-        return OTPService(new RestClient());
+      case Flavor.pro:
+        return OTPService(RestClient());
     }
   }
 }

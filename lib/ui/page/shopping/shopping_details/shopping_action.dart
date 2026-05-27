@@ -7,17 +7,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ShoppingAction extends StatefulWidget {
   final Product product;
-  ShoppingAction({this.product});
+  const ShoppingAction({super.key, required this.product});
 
   @override
   ShoppingActionState createState() {
-    return new ShoppingActionState();
+    return ShoppingActionState();
   }
 }
 
 class ShoppingActionState extends State<ShoppingAction> {
-  String _value = "Cyan";
-  String _sizeValue = "M";
+  String? _value = "Cyan";
+  String? _sizeValue = "M";
 
   Widget colorsCard() => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,6 +103,7 @@ class ShoppingActionState extends State<ShoppingAction> {
             CustomFloat(
               isMini: true,
               icon: FontAwesomeIcons.minus,
+              builder: const SizedBox.shrink(),
               qrCallback: () => cartBloc.subtractionController.add(true),
             ),
             StreamBuilder<int>(
@@ -117,6 +118,7 @@ class ShoppingActionState extends State<ShoppingAction> {
             CustomFloat(
               isMini: true,
               icon: FontAwesomeIcons.plus,
+              builder: const SizedBox.shrink(),
               qrCallback: () => cartBloc.additionalController.add(true),
             ),
           ],

@@ -28,19 +28,19 @@ class CreditCardBloc {
     nameInputController.stream.listen(onNameInput);
   }
 
-  onCCInput(String input) {
+  void onCCInput(String input) {
     ccOutputController.add(input.toString());
   }
 
-  onExpInput(String input) {
+  void onExpInput(String input) {
     expOutputController.add(input);
   }
 
-  onCvvInput(String input) {
+  void onCvvInput(String input) {
     cvvOutputController.add(input);
   }
 
-  onNameInput(String input) {
+  void onNameInput(String input) {
     nameOutputController.add(input);
   }
 
@@ -50,9 +50,9 @@ class CreditCardBloc {
   }
 
   void dispose() {
-    ccInputController?.close();
-    cvvInputController?.close();
-    expInputController?.close();
-    nameInputController?.close();
+    ccInputController.close();
+    cvvInputController.close();
+    expInputController.close();
+    nameInputController.close();
   }
 }

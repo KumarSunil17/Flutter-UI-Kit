@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_uikit/services/network_service_response.dart';
 import 'package:flutter_uikit/utils/uidata.dart';
 
-fetchApiResult(BuildContext context, NetworkServiceResponse snapshot) {
+void fetchApiResult(BuildContext context, NetworkServiceResponse snapshot) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
           title: Text(UIData.error),
           content: Text(snapshot.message),
           actions: <Widget>[
-            FlatButton(
-              child: Text(UIData.ok),
+            TextButton(
               onPressed: () => Navigator.pop(context),
+              child: Text(UIData.ok),
             )
           ],
         ),
   );
 }
 
-showSuccess(BuildContext context, String message, IconData icon) {
+void showSuccess(BuildContext context, String message, IconData icon) {
   showDialog(
       context: context,
       builder: (context) => Center(
@@ -51,7 +51,7 @@ showSuccess(BuildContext context, String message, IconData icon) {
           ));
 }
 
-showProgress(BuildContext context) {
+void showProgress(BuildContext context) {
   showDialog(
       context: context,
       barrierDismissible: false,
@@ -62,6 +62,6 @@ showProgress(BuildContext context) {
           ));
 }
 
-hideProgress(BuildContext context) {
+void hideProgress(BuildContext context) {
   Navigator.pop(context);
 }

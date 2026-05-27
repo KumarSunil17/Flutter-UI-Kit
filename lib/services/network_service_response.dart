@@ -1,14 +1,21 @@
 class NetworkServiceResponse<T> {
-  T content;
+  T? content;
   bool success;
   String message;
 
-  NetworkServiceResponse({this.content, this.success, this.message});
+  NetworkServiceResponse({
+    this.content,
+    this.success = false,
+    this.message = '',
+  });
 }
 
 class MappedNetworkServiceResponse<T> {
   dynamic mappedResult;
   NetworkServiceResponse<T> networkServiceResponse;
-  MappedNetworkServiceResponse(
-      {this.mappedResult, this.networkServiceResponse});
+
+  MappedNetworkServiceResponse({
+    this.mappedResult,
+    required this.networkServiceResponse,
+  });
 }

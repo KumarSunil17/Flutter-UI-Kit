@@ -10,9 +10,10 @@ class LabelBelowIcon extends StatelessWidget {
   final isCircleEnabled;
   final betweenHeight;
 
-  LabelBelowIcon(
-      {this.label,
-      this.icon,
+  const LabelBelowIcon({
+      super.key,
+      this.label,
+      required this.icon,
       this.onPressed,
       this.iconColor = Colors.white,
       this.circleColor,

@@ -15,21 +15,21 @@ class DashboardMenuRow extends StatelessWidget {
   final IconData fourthIcon;
   final fourthIconCircleColor;
 
-  const DashboardMenuRow(
-      {Key key,
+  const DashboardMenuRow({
+      super.key,
       this.firstLabel,
-      this.firstIcon,
+      required this.firstIcon,
       this.firstIconCircleColor,
       this.secondLabel,
-      this.secondIcon,
+      required this.secondIcon,
       this.secondIconCircleColor,
       this.thirdLabel,
-      this.thirdIcon,
+      required this.thirdIcon,
       this.thirdIconCircleColor,
       this.fourthLabel,
-      this.fourthIcon,
-      this.fourthIconCircleColor})
-      : super(key: key);
+      required this.fourthIcon,
+      this.fourthIconCircleColor,
+  });
   @override
   Widget build(BuildContext context) {
     return Padding(

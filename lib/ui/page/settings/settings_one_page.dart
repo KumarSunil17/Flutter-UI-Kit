@@ -4,6 +4,8 @@ import 'package:flutter_uikit/ui/widgets/common_switch.dart';
 import 'package:flutter_uikit/utils/uidata.dart';
 
 class SettingsOnePage extends StatelessWidget {
+  const SettingsOnePage({super.key});
+
   Widget bodyData() => SingleChildScrollView(
         child: Theme(
           data: ThemeData(fontFamily: UIData.ralewayFont),

@@ -4,7 +4,7 @@ import 'package:flutter_uikit/logic/viewmodel/cart_view_model.dart';
 import 'package:flutter_uikit/model/product.dart';
 
 class CartBloc {
-  CartViewModel _cartViewModel;
+  late final CartViewModel _cartViewModel;
   final additionalController = StreamController<bool>();
   final subtractionController = StreamController<bool>();
   final countController = StreamController<int>();
@@ -29,8 +29,8 @@ class CartBloc {
   }
 
   void dispose() {
-    additionalController?.close();
-    subtractionController?.close();
-    countController?.close();
+    additionalController.close();
+    subtractionController.close();
+    countController.close();
   }
 }

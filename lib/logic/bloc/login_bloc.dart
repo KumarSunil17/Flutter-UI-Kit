@@ -10,7 +10,7 @@ class LoginBloc {
   final otpResendController = StreamController<bool>();
   final otpResultController = BehaviorSubject<bool>();
   Sink<UserLoginViewModel> get otpSink => otpController.sink;
-  Sink<UserLoginViewModel> get loginSink => otpController.sink;
+  Sink<UserLoginViewModel> get loginSink => loginController.sink;
   Sink<bool> get resendOtpSink => otpResendController.sink;
   Stream<bool> get otpResult => otpResultController.stream;
   Stream<FetchProcess> get apiResult => apiController.stream;
@@ -22,8 +22,7 @@ class LoginBloc {
   }
 
   void apiCall(UserLoginViewModel userLogin) async {
-    FetchProcess process = new FetchProcess(loading: true);
-    //for progress loading
+    final process = FetchProcess(loading: true);
     apiController.add(process);
     if (userLogin.otp == null) {
       process.type = ApiType.performOTP;
@@ -36,9 +35,7 @@ class LoginBloc {
 
     process.loading = false;
     process.response = userLogin.apiResult;
-    //for error dialog
     apiController.add(process);
-    userLogin = null;
   }
 
   void resendOtp(bool flag) {

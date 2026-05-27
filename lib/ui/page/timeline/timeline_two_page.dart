@@ -7,22 +7,24 @@ import 'package:flutter_uikit/utils/uidata.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TimelineTwoPage extends StatefulWidget {
+  const TimelineTwoPage({super.key});
+
   @override
   TimelineTwoPageState createState() {
-    return new TimelineTwoPageState();
+    return TimelineTwoPageState();
   }
 }
 
 class TimelineTwoPageState extends State<TimelineTwoPage> {
-  ScrollController scrollController;
-  PostBloc postBloc;
+  late ScrollController scrollController;
+  late PostBloc postBloc;
 
   Widget bodyData() {
     return StreamBuilder<List<Post>>(
         stream: postBloc.postItems,
         builder: (context, snapshot) {
           return snapshot.hasData
-              ? bodyList(snapshot.data)
+              ? bodyList(snapshot.data!)
               : Center(child: CircularProgressIndicator());
         });
   }
@@ -75,7 +77,7 @@ class TimelineTwoPageState extends State<TimelineTwoPage> {
                         text: "@${post.address} · ",
                         style: TextStyle(color: Colors.grey)),
                     TextSpan(
-                        text: "${post.postTime}",
+                        text: post.postTime,
                         style: TextStyle(color: Colors.grey))
                   ]),
                 ),
@@ -93,16 +95,14 @@ class TimelineTwoPageState extends State<TimelineTwoPage> {
               SizedBox(
                 height: 10.0,
               ),
-              post.messageImage != null
-                  ? Material(
+              Material(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.network(
                         post.messageImage,
                         gaplessPlayback: true,
                         fit: BoxFit.cover,
                       ),
-                    )
-                  : Container(),
+                    ),
               SizedBox(
                 height: 20.0,
               ),
@@ -146,16 +146,20 @@ class TimelineTwoPageState extends State<TimelineTwoPage> {
     postBloc = PostBloc();
     scrollController.addListener(() {
       if (scrollController.position.userScrollDirection ==
-          ScrollDirection.reverse) postBloc.fabSink.add(false);
+          ScrollDirection.reverse) {
+        postBloc.fabSink.add(false);
+      }
       if (scrollController.position.userScrollDirection ==
-          ScrollDirection.forward) postBloc.fabSink.add(true);
+          ScrollDirection.forward) {
+        postBloc.fabSink.add(true);
+      }
     });
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
-    postBloc?.dispose();
+    scrollController.dispose();
+    postBloc.dispose();
     super.dispose();
   }
 
@@ -174,13 +178,13 @@ class TimelineTwoPageState extends State<TimelineTwoPage> {
         initialData: true,
         builder: (context, snapshot) => AnimatedOpacity(
               duration: Duration(milliseconds: 200),
-              opacity: snapshot.data ? 1.0 : 0.0,
+              opacity: (snapshot.data ?? true) ? 1.0 : 0.0,
               child: FloatingActionButton(
                 onPressed: () {},
                 backgroundColor: Colors.white,
                 child: CustomPaint(
-                  child: Container(),
                   foregroundPainter: FloatingPainter(),
+                  child: Container(),
                 ),
               ),
             ),

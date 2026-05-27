@@ -5,7 +5,8 @@ import 'package:flutter_uikit/ui/widgets/common_scaffold.dart';
 
 class ShoppingOnePage extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  BuildContext _context;
+
+  ShoppingOnePage({super.key});
 
   //stack1
   Widget imageStack(String img) => Image.network(
@@ -74,16 +75,17 @@ class ShoppingOnePage extends StatelessWidget {
         ),
       );
 
-  Widget productGrid(List<Product> products) => GridView.count(
+  Widget productGrid(BuildContext context, List<Product> products) =>
+      GridView.count(
         crossAxisCount:
-            MediaQuery.of(_context).orientation == Orientation.portrait ? 2 : 3,
+            MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 3,
         shrinkWrap: true,
         children: products
             .map((product) => Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     splashColor: Colors.yellow,
-                    onDoubleTap: () => showSnackBar(),
+                    onDoubleTap: () => showSnackBar(context),
                     child: Material(
                       clipBehavior: Clip.antiAlias,
                       elevation: 2.0,
@@ -107,13 +109,13 @@ class ShoppingOnePage extends StatelessWidget {
         stream: productBloc.productItems,
         builder: (context, snapshot) {
           return snapshot.hasData
-              ? productGrid(snapshot.data)
+              ? productGrid(context, snapshot.data!)
               : Center(child: CircularProgressIndicator());
         });
   }
 
-  void showSnackBar() {
-    scaffoldKey.currentState.showSnackBar(SnackBar(
+  void showSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(
         "Added to cart.",
       ),
@@ -126,7 +128,6 @@ class ShoppingOnePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _context = context;
     return CommonScaffold(
       scaffoldKey: scaffoldKey,
       appTitle: "Products",

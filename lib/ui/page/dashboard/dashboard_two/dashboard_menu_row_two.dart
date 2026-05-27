@@ -10,14 +10,14 @@ class DashboardMenuRowTwo extends StatelessWidget {
   final IconData thirdIcon;
 
   const DashboardMenuRowTwo({
-    Key key,
+    super.key,
     this.firstLabel,
-    this.firstIcon,
+    required this.firstIcon,
     this.secondLabel,
-    this.secondIcon,
+    required this.secondIcon,
     this.thirdLabel,
-    this.thirdIcon,
-  }) : super(key: key);
+    required this.thirdIcon,
+  });
   @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;

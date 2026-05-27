@@ -5,32 +5,29 @@ import 'package:flutter_uikit/model/login.dart';
 import 'package:flutter_uikit/model/otp.dart';
 import 'package:flutter_uikit/services/abstract/i_otp_service.dart';
 import 'package:flutter_uikit/services/network_service_response.dart';
-import 'package:meta/meta.dart';
 
 class UserLoginViewModel {
   String phonenumber;
-  String otp;
+  String? otp;
   bool otpResult = false;
-  NetworkServiceResponse apiResult;
-  IOTPService otpRepo = new Injector().otpService;
+  late NetworkServiceResponse apiResult;
+  final IOTPService otpRepo = Injector().otpService;
 
-  //for otp
-  UserLoginViewModel({@required this.phonenumber});
+  UserLoginViewModel({required this.phonenumber});
 
-  //for login
-  UserLoginViewModel.withOTP({@required this.phonenumber, @required this.otp});
+  UserLoginViewModel.withOTP({required this.phonenumber, required this.otp});
 
-  Future<Null> getOtp(String phoneNumber) async {
-    NetworkServiceResponse<CreateOTPResponse> result =
+  Future<void> getOtp(String phoneNumber) async {
+    final NetworkServiceResponse<CreateOTPResponse> result =
         await otpRepo.createOTP(phoneNumber);
-    this.otpResult = result.success;
-    this.apiResult = result;
+    otpResult = result.success;
+    apiResult = result;
   }
 
-  Future<Null> performLogin(UserLoginViewModel userLogin) async {
-    NetworkServiceResponse<OTPResponse> result =
+  Future<void> performLogin(UserLoginViewModel userLogin) async {
+    final NetworkServiceResponse<OTPResponse> result =
         await otpRepo.fetchOTPLoginResponse(
-            Login(phonenumber: userLogin.phonenumber, otp: userLogin.otp));
-    this.apiResult = result;
+            Login(phonenumber: userLogin.phonenumber, otp: userLogin.otp!));
+    apiResult = result;
   }
 }

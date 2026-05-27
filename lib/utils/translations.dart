@@ -5,31 +5,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 class Translations {
-  Translations(Locale locale) {
-    this.locale = locale;
-    _localizedValues = null;
-  }
+  Translations(this.locale);
 
-  Locale locale;
-  static Map<dynamic, dynamic> _localizedValues;
+  final Locale locale;
+  static Map<dynamic, dynamic> _localizedValues = {};
 
   static Translations of(BuildContext context) {
-    return Localizations.of<Translations>(context, Translations);
+    return Localizations.of<Translations>(context, Translations)!;
   }
 
   String text(String key) {
-    return _localizedValues[key] ?? '** $key not found';
+    return _localizedValues[key]?.toString() ?? '** $key not found';
   }
 
   static Future<Translations> load(Locale locale) async {
-    Translations translations = new Translations(locale);
-    String jsonContent =
+    final translations = Translations(locale);
+    final jsonContent =
         await rootBundle.loadString("locale/i18n_${locale.languageCode}.json");
-    _localizedValues = json.decode(jsonContent);
+    _localizedValues = json.decode(jsonContent) as Map<dynamic, dynamic>;
     return translations;
   }
 
-  get currentLanguage => locale.languageCode;
+  String get currentLanguage => locale.languageCode;
 }
 
 class TranslationsDelegate extends LocalizationsDelegate<Translations> {

@@ -3,7 +3,9 @@ import 'package:flutter_uikit/ui/page/profile/profile_one_page.dart';
 import 'package:flutter_uikit/ui/widgets/common_scaffold.dart';
 
 class ProfileTwoPage extends StatelessWidget {
-  Size deviceSize;
+  late Size deviceSize;
+
+  ProfileTwoPage({super.key});
 
   Widget profileHeader() => Container(
         height: deviceSize.height / 4,
@@ -42,7 +44,7 @@ class ProfileTwoPage extends StatelessWidget {
           ),
         ),
       );
-  Widget imagesCard() => Container(
+  Widget imagesCard() => SizedBox(
         height: deviceSize.height / 6,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 5.0),
@@ -106,7 +108,7 @@ class ProfileTwoPage extends StatelessWidget {
         ),
       );
 
-  Widget postCard() => Container(
+  Widget postCard() => SizedBox(
         width: double.infinity,
         height: deviceSize.height / 3,
         child: Padding(

@@ -9,14 +9,15 @@ class Post {
   String postTime;
   List<String> photos;
 
-  Post(
-      {this.personName,
-      this.personImage,
-      this.address,
-      this.message,
-      this.commentsCount,
-      this.likesCount,
-      this.messageImage,
-      this.postTime,
-      this.photos});
+  Post({
+    required this.personName,
+    required this.personImage,
+    required this.address,
+    required this.message,
+    required this.commentsCount,
+    required this.likesCount,
+    required this.messageImage,
+    required this.postTime,
+    required this.photos,
+  });
 }

@@ -4,84 +4,84 @@ import 'package:flutter_uikit/model/product.dart';
 class ProductDesc extends StatelessWidget {
   final Product product;
 
-  const ProductDesc({Key key, this.product}) : super(key: key);
+  const ProductDesc({super.key, required this.product});
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: new Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: new ListTile(
-              title: new Text(
+            child: ListTile(
+              title: Text(
                 product.name,
-                style: new TextStyle(
+                style: TextStyle(
                     fontSize: 18.0,
                     color: Colors.white,
                     fontWeight: FontWeight.w700),
               ),
-              subtitle: new Text(
+              subtitle: Text(
                 product.brand,
-                style: new TextStyle(
+                style: TextStyle(
                     fontSize: 15.0,
                     color: Colors.white,
                     fontWeight: FontWeight.normal),
               ),
-              trailing: new Text(product.price,
-                  style: new TextStyle(
+              trailing: Text(product.price,
+                  style: TextStyle(
                       fontSize: 25.0,
                       fontWeight: FontWeight.bold,
                       color: Colors.yellow)),
             ),
           ),
-          new SizedBox(
+          SizedBox(
             height: 10.0,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 28.0),
-            child: new Text(
+            child: Text(
               product.description,
               style: TextStyle(color: Colors.white),
               textAlign: TextAlign.start,
             ),
           ),
-          new SizedBox(
+          SizedBox(
             height: 30.0,
           ),
-          new Card(
+          Card(
             clipBehavior: Clip.antiAlias,
-            shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(8.0)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0)),
             color: Colors.white,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: new Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  new Column(
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      new Text(
+                      Text(
                         "Your Size",
                         style: TextStyle(fontWeight: FontWeight.w700),
                       ),
-                      new RawChip(
-                          label: new Text(
+                      RawChip(
+                          label: Text(
                             "M",
                             style: TextStyle(color: Colors.white),
                           ),
                           backgroundColor: Colors.cyan)
                     ],
                   ),
-                  new Column(
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      new Text("Color",
+                      Text("Color",
                           style: TextStyle(fontWeight: FontWeight.w700)),
-                      new RawChip(
-                        label: new Text(
+                      RawChip(
+                        label: Text(
                           "Red Blue",
                           style: TextStyle(color: Colors.white),
                         ),
@@ -89,13 +89,13 @@ class ProductDesc extends StatelessWidget {
                       )
                     ],
                   ),
-                  new Column(
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      new Text("Product ID",
+                      Text("Product ID",
                           style: TextStyle(fontWeight: FontWeight.w700)),
-                      new RawChip(
-                        label: new Text(
+                      RawChip(
+                        label: Text(
                           "PQ1001",
                           style: TextStyle(color: Colors.white),
                         ),

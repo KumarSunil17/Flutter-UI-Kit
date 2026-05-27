@@ -16,13 +16,13 @@ class PostBloc {
     postController.add(postViewModel.getPosts());
     fabController.stream.listen(onScroll);
   }
-  onScroll(bool visible) {
+  void onScroll(bool visible) {
     fabVisibleController.add(visible);
   }
 
   void dispose() {
-    postController?.close();
-    fabController?.close();
-    fabVisibleController?.close();
+    postController.close();
+    fabController.close();
+    fabVisibleController.close();
   }
 }

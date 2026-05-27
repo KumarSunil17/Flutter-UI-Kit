@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_uikit/logic/bloc/post_bloc.dart';
 import 'package:flutter_uikit/model/post.dart';
-import 'package:flutter_uikit/ui/widgets/common_divider.dart';
 import 'package:flutter_uikit/ui/widgets/common_drawer.dart';
 import 'package:flutter_uikit/ui/widgets/label_icon.dart';
 import 'package:flutter_uikit/utils/uidata.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TimelineOnePage extends StatelessWidget {
+  const TimelineOnePage({super.key});
+
   //column1
   Widget profileColumn(BuildContext context, Post post) => Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -26,7 +27,7 @@ class TimelineOnePage extends StatelessWidget {
                   post.personName,
                   style: Theme.of(context)
                       .textTheme
-                      .body1
+                      .bodyMedium!
                       .apply(fontWeightDelta: 700),
                 ),
                 SizedBox(
@@ -34,7 +35,7 @@ class TimelineOnePage extends StatelessWidget {
                 ),
                 Text(
                   post.address,
-                  style: Theme.of(context).textTheme.caption.apply(
+                  style: Theme.of(context).textTheme.bodySmall!.apply(
                       fontFamily: UIData.ralewayFont, color: Colors.pink),
                 )
               ],
@@ -46,7 +47,7 @@ class TimelineOnePage extends StatelessWidget {
   //column last
   Widget actionColumn(Post post) => FittedBox(
         fit: BoxFit.contain,
-        child: ButtonBar(
+        child: OverflowBar(
           alignment: MainAxisAlignment.center,
           children: <Widget>[
             LabelIcon(
@@ -89,13 +90,11 @@ class TimelineOnePage extends StatelessWidget {
           SizedBox(
             height: 10.0,
           ),
-          post.messageImage != null
-              ? Image.network(
+          Image.network(
                   post.messageImage,
                   fit: BoxFit.cover,
-                )
-              : Container(),
-          post.messageImage != null ? Container() : CommonDivider(),
+                ),
+          Container(),
           actionColumn(post),
         ],
       ),
@@ -103,7 +102,7 @@ class TimelineOnePage extends StatelessWidget {
   }
 
   //allposts dropdown
-  Widget bottomBar() => PreferredSize(
+  PreferredSizeWidget bottomBar() => PreferredSize(
       preferredSize: Size(double.infinity, 50.0),
       child: Container(
           color: Colors.black,
@@ -155,7 +154,7 @@ class TimelineOnePage extends StatelessWidget {
               ? CustomScrollView(
                   slivers: <Widget>[
                     appBar(),
-                    bodyList(snapshot.data),
+                    bodyList(snapshot.data!),
                   ],
                 )
               : Center(child: CircularProgressIndicator());

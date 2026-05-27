@@ -6,9 +6,11 @@ import 'package:flutter_uikit/ui/widgets/profile_tile.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PaymentSuccessPage extends StatefulWidget {
+  const PaymentSuccessPage({super.key});
+
   @override
   PaymentSuccessPageState createState() {
-    return new PaymentSuccessPageState();
+    return PaymentSuccessPageState();
   }
 }
 
@@ -16,11 +18,13 @@ class PaymentSuccessPageState extends State<PaymentSuccessPage> {
   bool isDataAvailable = true;
   Widget bodyData() => Center(
         child: isDataAvailable
-            ? RaisedButton(
-                shape: StadiumBorder(),
+            ? ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.amber,
+                  shape: const StadiumBorder(),
+                ),
                 onPressed: () => showSuccessDialog(),
-                color: Colors.amber,
-                child: Text("Process Payment"),
+                child: const Text("Process Payment"),
               )
             : CircularProgressIndicator(),
       );
@@ -41,7 +45,7 @@ class PaymentSuccessPageState extends State<PaymentSuccessPage> {
     });
   }
 
-  goToDialog() {
+  void goToDialog() {
     setState(() {
       isDataAvailable = true;
     });
@@ -73,7 +77,7 @@ class PaymentSuccessPageState extends State<PaymentSuccessPage> {
             ));
   }
 
-  successTicket() => Container(
+  Container successTicket() => Container(
         width: double.infinity,
         padding: const EdgeInsets.all(16.0),
         child: Material(

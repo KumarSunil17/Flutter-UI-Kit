@@ -3,6 +3,8 @@ import 'package:flutter_uikit/ui/widgets/about_tile.dart';
 import 'package:flutter_uikit/utils/uidata.dart';
 
 class CommonDrawer extends StatelessWidget {
+  const CommonDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -16,11 +18,11 @@ class CommonDrawer extends StatelessWidget {
             accountEmail: Text(
               "mtechviral@gmail.com",
             ),
-            currentAccountPicture: new CircleAvatar(
-              backgroundImage: new AssetImage(UIData.pkImage),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: AssetImage(UIData.pkImage),
             ),
           ),
-          new ListTile(
+          ListTile(
             title: Text(
               "Profile",
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
@@ -30,7 +32,7 @@ class CommonDrawer extends StatelessWidget {
               color: Colors.blue,
             ),
           ),
-          new ListTile(
+          ListTile(
             title: Text(
               "Shopping",
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
@@ -40,7 +42,7 @@ class CommonDrawer extends StatelessWidget {
               color: Colors.green,
             ),
           ),
-          new ListTile(
+          ListTile(
             title: Text(
               "Dashboard",
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
@@ -50,7 +52,7 @@ class CommonDrawer extends StatelessWidget {
               color: Colors.red,
             ),
           ),
-          new ListTile(
+          ListTile(
             title: Text(
               "Timeline",
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
@@ -61,7 +63,7 @@ class CommonDrawer extends StatelessWidget {
             ),
           ),
           Divider(),
-          new ListTile(
+          ListTile(
             title: Text(
               "Settings",
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),

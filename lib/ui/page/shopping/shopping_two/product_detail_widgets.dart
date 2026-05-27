@@ -8,16 +8,16 @@ import 'package:flutter_uikit/utils/uidata.dart';
 class ProductDetailWidgets extends StatelessWidget {
   final Product product;
 
-  const ProductDetailWidgets({Key key, this.product}) : super(key: key);
+  const ProductDetailWidgets({super.key, required this.product});
 
-  Widget appBarColumn(BuildContext context) => new Column(
+  Widget appBarColumn(BuildContext context) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          new Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              new IconButton(
-                icon: new Icon(
+              IconButton(
+                icon: Icon(
                   defaultTargetPlatform == TargetPlatform.android
                       ? Icons.arrow_back
                       : Icons.arrow_back_ios,
@@ -26,14 +26,14 @@ class ProductDetailWidgets extends StatelessWidget {
                 onPressed: () =>
                     Navigator.canPop(context) ? Navigator.pop(context) : null,
               ),
-              new Text(
+              Text(
                 "Product Detail",
-                style: new TextStyle(color: Colors.white, fontSize: 20.0),
+                style: TextStyle(color: Colors.white, fontSize: 20.0),
               ),
-              new Opacity(
+              Opacity(
                 opacity: 0.0,
-                child: new IconButton(
-                  icon: new Icon(
+                child: IconButton(
+                  icon: Icon(
                     Icons.arrow_back,
                     color: Colors.white,
                   ),
@@ -42,31 +42,31 @@ class ProductDetailWidgets extends StatelessWidget {
               )
             ],
           ),
-          new SizedBox(
+          SizedBox(
             height: 10.0,
           ),
           ProductCard(product: product)
         ],
       );
-  Widget quantityCard(Size deviceSize, CartBloc cartBloc) => new Positioned(
+  Widget quantityCard(Size deviceSize, CartBloc cartBloc) => Positioned(
         top: (deviceSize.height - deviceSize.height * 0.1),
         left: deviceSize.width / 2 - deviceSize.width / 5,
         width: deviceSize.width / 2 - 30,
-        child: new Material(
+        child: Material(
           clipBehavior: Clip.antiAlias,
-          shape: new StadiumBorder(),
+          shape: StadiumBorder(),
           shadowColor: Colors.black,
           elevation: 2.0,
           color: Colors.transparent,
           child: Ink(
-            decoration: new BoxDecoration(
-              gradient: new LinearGradient(colors: UIData.kitGradients),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: UIData.kitGradients),
             ),
-            child: new Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                new IconButton(
-                  icon: new Icon(
+                IconButton(
+                  icon: Icon(
                     Icons.remove,
                     color: Colors.white,
                   ),
@@ -75,16 +75,16 @@ class ProductDetailWidgets extends StatelessWidget {
                 StreamBuilder<int>(
                   stream: cartBloc.getCount,
                   initialData: 0,
-                  builder: (context, snapshot) => new Text(
+                  builder: (context, snapshot) => Text(
                         snapshot.data.toString(),
-                        style: new TextStyle(
+                        style: TextStyle(
                             color: Colors.white,
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold),
                       ),
                 ),
-                new IconButton(
-                  icon: new Icon(
+                IconButton(
+                  icon: Icon(
                     Icons.add,
                     color: Colors.white,
                   ),

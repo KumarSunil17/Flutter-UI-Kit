@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_uikit/ui/page/login/login_one/login_card.dart';
 
 class LoginWidgets extends StatelessWidget {
+  const LoginWidgets({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(

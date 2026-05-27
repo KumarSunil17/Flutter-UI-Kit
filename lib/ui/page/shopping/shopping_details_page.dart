@@ -11,6 +11,8 @@ import 'package:flutter_uikit/ui/widgets/login_background.dart';
 class ShoppingDetailsPage extends StatelessWidget {
   final _scaffoldState = GlobalKey<ScaffoldState>();
 
+  ShoppingDetailsPage({super.key});
+
   Widget bodyData(Stream<List<Product>> products) =>
       StreamBuilder<List<Product>>(
           stream: products,
@@ -21,9 +23,9 @@ class ShoppingDetailsPage extends StatelessWidget {
                     children: <Widget>[
                       LoginBackground(
                         showIcon: false,
-                        image: snapshot.data[0].image,
+                        image: snapshot.data![0].image,
                       ),
-                      ShoppingWidgets(product: snapshot.data[0]),
+                      ShoppingWidgets(product: snapshot.data![0]),
                     ],
                   )
                 : Center(child: CircularProgressIndicator());

@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_uikit/model/product.dart';
 
 class ProductViewModel {
-  
-  List<Product> productsItems;
-
-  ProductViewModel({this.productsItems});
-
-  getProducts() => <Product>[
+  List<Product> getProducts() => <Product>[
         Product(
             brand: "Levis",
             description: "Print T-shirt",
@@ -45,7 +40,9 @@ class ProductViewModel {
             name: "AQUALETTE",
             price: "£13.49",
             rating: 5.0,
-            totalReviews: 10),
+            totalReviews: 10,
+            sizes: const [],
+            colors: const []),
         Product(
             brand: "Produkt",
             description: "Men's Shirt",
@@ -54,7 +51,9 @@ class ProductViewModel {
             name: "ROBI CHECK",
             price: "£16.49",
             rating: 4.5,
-            totalReviews: 0),
+            totalReviews: 0,
+            sizes: const [],
+            colors: const []),
         Product(
             brand: "adidas Originals",
             description: "Hoodie",
@@ -63,7 +62,9 @@ class ProductViewModel {
             name: "TREF OVER HOOD",
             price: "£34.99",
             rating: 4.0,
-            totalReviews: 5),
+            totalReviews: 5,
+            sizes: const [],
+            colors: const []),
         Product(
             brand: "ION",
             description: "Hydration rucksack",
@@ -72,7 +73,9 @@ class ProductViewModel {
             name: "BACKPACK VILLAIN 4",
             price: "£55.99",
             rating: 4.8,
-            totalReviews: 12),
+            totalReviews: 12,
+            sizes: const [],
+            colors: const []),
         Product(
             brand: "Diesel",
             description: "Straight leg jeans",
@@ -81,7 +84,9 @@ class ProductViewModel {
             name: "THYTAN",
             price: "£83.99",
             rating: 4.2,
-            totalReviews: 28),
+            totalReviews: 28,
+            sizes: const [],
+            colors: const []),
         Product(
             brand: "YOURTURN",
             description: "Watch in budget",
@@ -90,7 +95,9 @@ class ProductViewModel {
             name: "Watch",
             price: "£11.99",
             rating: 4.7,
-            totalReviews: 120),
+            totalReviews: 120,
+            sizes: const [],
+            colors: const []),
         Product(
             brand: "Vero Moda",
             description: "Day dress - black/off",
@@ -99,7 +106,9 @@ class ProductViewModel {
             name: "VMKANA",
             price: "£26.59",
             rating: 4.0,
-            totalReviews: 33),
+            totalReviews: 33,
+            sizes: const [],
+            colors: const []),
         Product(
             brand: "ONLY",
             description: "A-line skirt",
@@ -108,7 +117,9 @@ class ProductViewModel {
             name: "ONLTHAI FRILL",
             price: "£25.59",
             rating: 4.4,
-            totalReviews: 44),
+            totalReviews: 44,
+            sizes: const [],
+            colors: const []),
         Product(
             brand: "MAI PIÙ SENZA",
             description: "Awesome Heels",
@@ -117,6 +128,8 @@ class ProductViewModel {
             name: "HIGH HEELS",
             price: "£59.99",
             rating: 4.1,
-            totalReviews: 22),
+            totalReviews: 22,
+            sizes: const [],
+            colors: const []),
       ];
 }

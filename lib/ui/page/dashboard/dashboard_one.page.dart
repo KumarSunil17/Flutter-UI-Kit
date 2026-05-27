@@ -7,17 +7,19 @@ import 'package:flutter_uikit/utils/uidata.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DashboardOnePage extends StatelessWidget {
-  Size deviceSize;
+  late Size deviceSize;
+
+  DashboardOnePage({super.key});
   Widget appBarColumn(BuildContext context) => SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 18.0),
-          child: new Column(
+          child: Column(
             children: <Widget>[
-              new Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  new IconButton(
-                    icon: new Icon(
+                  IconButton(
+                    icon: Icon(
                       defaultTargetPlatform == TargetPlatform.android
                           ? Icons.arrow_back
                           : Icons.arrow_back_ios,
@@ -27,13 +29,13 @@ class DashboardOnePage extends StatelessWidget {
                         ? Navigator.pop(context)
                         : null,
                   ),
-                  new ProfileTile(
+                  ProfileTile(
                     title: "Hi, Pawan Kumar",
                     subtitle: "Welcome to the Flutter UIKit",
                     textColor: Colors.white,
                   ),
-                  new IconButton(
-                    icon: new Icon(
+                  IconButton(
+                    icon: Icon(
                       Icons.more_vert,
                       color: Colors.white,
                     ),

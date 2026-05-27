@@ -4,10 +4,10 @@ import 'package:flutter_uikit/ui/page/shopping/shopping_details/shopping_action.
 import 'package:flutter_uikit/ui/widgets/label_icon.dart';
 
 class ShoppingWidgets extends StatelessWidget {
-  Size deviceSize;
+  late Size deviceSize;
   final Product product;
 
-  ShoppingWidgets({Key key, this.product}) : super(key: key);
+  ShoppingWidgets({super.key, required this.product});
   Widget mainCard() => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0),
         child: Card(

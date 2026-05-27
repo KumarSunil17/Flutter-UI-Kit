@@ -9,8 +9,9 @@ import 'package:flutter_uikit/utils/uidata.dart';
 
 class HomePage extends StatelessWidget {
   final _scaffoldState = GlobalKey<ScaffoldState>();
-  Size deviceSize;
-  BuildContext _context;
+  late Size deviceSize;
+
+  HomePage({super.key});
   //menuStack
   Widget menuStack(BuildContext context, Menu menu) => InkWell(
         onTap: () => _showModalBottomSheet(context, menu),
@@ -36,7 +37,7 @@ class HomePage extends StatelessWidget {
       );
 
   //stack 2/3
-  Widget menuColor() => new Container(
+  Widget menuColor() => Container(
         decoration: BoxDecoration(boxShadow: <BoxShadow>[
           BoxShadow(
             color: Colors.black.withOpacity(0.8),
@@ -78,10 +79,7 @@ class HomePage extends StatelessWidget {
           ),
           title: Row(
             children: <Widget>[
-              FlutterLogo(
-                colors: Colors.yellow,
-                textColor: Colors.white,
-              ),
+              const FlutterLogo(),
               SizedBox(
                 width: 10.0,
               ),
@@ -94,10 +92,7 @@ class HomePage extends StatelessWidget {
   //bodygrid
   Widget bodyGrid(List<Menu> menu) => SliverGrid(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount:
-              MediaQuery.of(_context).orientation == Orientation.portrait
-                  ? 2
-                  : 3,
+          crossAxisCount: deviceSize.width < deviceSize.height ? 2 : 3,
           mainAxisSpacing: 0.0,
           crossAxisSpacing: 0.0,
           childAspectRatio: 1.0,
@@ -123,7 +118,7 @@ class HomePage extends StatelessWidget {
               ? CustomScrollView(
                   slivers: <Widget>[
                     appBar(),
-                    bodyGrid(snapshot.data),
+                    bodyGrid(snapshot.data!),
                   ],
                 )
               : Center(child: CircularProgressIndicator());
@@ -162,9 +157,9 @@ class HomePage extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             color: Colors.white,
             shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.only(
-                    topLeft: new Radius.circular(15.0),
-                    topRight: new Radius.circular(15.0))),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15.0),
+                    topRight: Radius.circular(15.0))),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               mainAxisSize: MainAxisSize.max,
@@ -225,12 +220,12 @@ class HomePage extends StatelessWidget {
               child: CupertinoButton(
                 onPressed: () => _showModalBottomSheet(context, menu),
                 borderRadius: BorderRadius.circular(50.0),
+                color: Colors.white,
                 child: Text(
                   "Go",
                   textAlign: TextAlign.left,
                   style: TextStyle(color: CupertinoColors.activeBlue),
                 ),
-                color: Colors.white,
               ),
             )
           ],
@@ -289,10 +284,10 @@ class HomePage extends StatelessWidget {
     MenuBloc menuBloc = MenuBloc();
     return StreamBuilder<List<Menu>>(
         stream: menuBloc.menuItems,
-        initialData: List(),
+        initialData: <Menu>[],
         builder: (context, snapshot) {
           return snapshot.hasData
-              ? bodyDataIOS(snapshot.data, context)
+              ? bodyDataIOS(snapshot.data!, context)
               : Center(
                   child: CircularProgressIndicator(),
                 );
@@ -318,9 +313,8 @@ class HomePage extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 15.0,
                         backgroundColor: CupertinoColors.black,
-                        child: FlutterLogo(
+                        child: const FlutterLogo(
                           size: 15.0,
-                          colors: Colors.yellow,
                         ),
                       ),
                     )
@@ -335,7 +329,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _context = context;
     deviceSize = MediaQuery.of(context).size;
     return defaultTargetPlatform == TargetPlatform.iOS
         ? homeIOS(context)

@@ -11,18 +11,21 @@ import 'package:flutter_uikit/ui/widgets/gradient_button.dart';
 import 'package:flutter_uikit/utils/translations.dart';
 
 class LoginCard extends StatefulWidget {
+  const LoginCard({super.key});
+
   @override
-  _LoginCardState createState() => new _LoginCardState();
+  _LoginCardState createState() => _LoginCardState();
 }
 
 class _LoginCardState extends State<LoginCard>
     with SingleTickerProviderStateMixin {
-  var deviceSize;
-  AnimationController controller;
-  Animation<double> animation;
-  LoginBloc loginBloc;
-  String phoneNumber, otp;
-  StreamSubscription<FetchProcess> apiStreamSubscription;
+  late Size deviceSize;
+  late AnimationController controller;
+  late Animation<double> animation;
+  late LoginBloc loginBloc;
+  String? phoneNumber;
+  String? otp;
+  late StreamSubscription<FetchProcess> apiStreamSubscription;
 
   Widget loginBuilder() => StreamBuilder<bool>(
         stream: loginBloc.otpResult,
@@ -31,33 +34,33 @@ class _LoginCardState extends State<LoginCard>
               child: Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: SingleChildScrollView(
-                  child: new Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      new TextField(
+                      TextField(
                         onChanged: (phone) => phoneNumber = phone,
-                        enabled: !snapshot.data,
+                        enabled: snapshot.data != true,
                         style:
-                            new TextStyle(fontSize: 15.0, color: Colors.black),
-                        decoration: new InputDecoration(
+                            TextStyle(fontSize: 15.0, color: Colors.black),
+                        decoration: InputDecoration(
                             hintText: Translations.of(context)
                                 .text("enter_code_hint"),
                             labelText: Translations.of(context)
                                 .text("enter_code_label"),
                             labelStyle: TextStyle(fontWeight: FontWeight.w700)),
                       ),
-                      new SizedBox(
+                      SizedBox(
                         height: 10.0,
                       ),
                       snapshot.data == false
-                          ? new Offstage()
-                          : new TextField(
+                          ? Offstage()
+                          : TextField(
                               onChanged: (myotp) => otp = myotp,
                               keyboardType: TextInputType.number,
-                              style: new TextStyle(
+                              style: TextStyle(
                                   fontSize: 15.0, color: Colors.black),
-                              decoration: new InputDecoration(
+                              decoration: InputDecoration(
                                   hintText: Translations.of(context)
                                       .text("enter_otp_hint"),
                                   labelText: Translations.of(context)
@@ -66,36 +69,36 @@ class _LoginCardState extends State<LoginCard>
                                       TextStyle(fontWeight: FontWeight.w700)),
                               obscureText: true,
                             ),
-                      new SizedBox(
+                      SizedBox(
                         height: 30.0,
                       ),
                       Container(
                         child: snapshot.data == false
-                            ? new GradientButton(
-                                onPressed: () => phoneNumber?.length == 10
+                            ? GradientButton(
+                                onPressed: () => (phoneNumber?.length ?? 0) == 10
                                     ? loginBloc.otpSink.add(UserLoginViewModel(
-                                        phonenumber: phoneNumber))
+                                        phonenumber: phoneNumber!))
                                     : showPhoneError(context),
                                 text: Translations.of(context).text("get_otp"))
-                            : new GradientButton(
+                            : GradientButton(
                                 onPressed: () {
-                                  otp?.length == 4
+                                  (otp?.length ?? 0) == 4
                                       ? loginBloc.loginSink.add(
-                                          new UserLoginViewModel.withOTP(
-                                              phonenumber: phoneNumber,
-                                              otp: otp))
+                                          UserLoginViewModel.withOTP(
+                                              phonenumber: phoneNumber!,
+                                              otp: otp!))
                                       : showOTPError(context);
                                 },
                                 text: Translations.of(context).text("login")),
                       ),
                       snapshot.data == true
-                          ? new FlatButton(
-                              child: Text(
-                                  Translations.of(context).text("resend_otp")),
+                          ? TextButton(
                               onPressed: () =>
                                   loginBloc.resendOtpSink.add(true),
+                              child: Text(
+                                  Translations.of(context).text("resend_otp")),
                             )
-                          : new Container()
+                          : Container()
                     ],
                   ),
                 ),
@@ -109,7 +112,7 @@ class _LoginCardState extends State<LoginCard>
       child: SizedBox(
         height: deviceSize.height / 2 - 20,
         width: deviceSize.width * 0.85,
-        child: new Card(
+        child: Card(
             color: Colors.white, elevation: 2.0, child: loginBuilder()),
       ),
     );
@@ -119,30 +122,30 @@ class _LoginCardState extends State<LoginCard>
   initState() {
     // TODO: implement initState
     super.initState();
-    loginBloc = new LoginBloc();
+    loginBloc = LoginBloc();
     apiStreamSubscription = apiSubscription(loginBloc.apiResult, context);
-    controller = new AnimationController(
-        vsync: this, duration: new Duration(milliseconds: 1500));
-    animation = new Tween(begin: 0.0, end: 1.0).animate(
-        new CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn));
-    animation.addListener(() => this.setState(() {}));
+    controller = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1500));
+    animation = Tween(begin: 0.0, end: 1.0).animate(
+        CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn));
+    animation.addListener(() => setState(() {}));
     controller.forward();
   }
 
   @override
   void dispose() {
-    controller?.dispose();
-    loginBloc?.dispose();
-    apiStreamSubscription?.cancel();
+    controller.dispose();
+    loginBloc.dispose();
+    apiStreamSubscription.cancel();
     super.dispose();
   }
 
-  showPhoneError(BuildContext context) {
+  void showPhoneError(BuildContext context) {
     LoginProvider.of(context)
         .validationErrorCallback(LoginValidationType.phone);
   }
 
-  showOTPError(BuildContext context) {
+  void showOTPError(BuildContext context) {
     LoginProvider.of(context).validationErrorCallback(LoginValidationType.otp);
   }
 

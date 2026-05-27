@@ -1,11 +1,7 @@
 import 'package:flutter_uikit/model/post.dart';
 
 class PostViewModel {
-  List<Post> postItems;
-
-  PostViewModel({this.postItems});
-
-  getPosts() => <Post>[
+  List<Post> getPosts() => <Post>[
         Post(
             personName: "Pawan",
             address: "New Delhi, India",
@@ -17,7 +13,8 @@ class PostViewModel {
                 "https://avatars0.githubusercontent.com/u/12619420?s=460&v=4",
             messageImage:
                 "https://cdn.pixabay.com/photo/2018/03/09/16/32/woman-3211957_1280.jpg",
-            postTime: "Just Now"),
+            postTime: "Just Now",
+            photos: const []),
         Post(
             personName: "Amanda",
             address: "Canada",
@@ -29,7 +26,8 @@ class PostViewModel {
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
             personImage:
                 "https://cdn.pixabay.com/photo/2016/04/10/21/34/woman-1320810_960_720.jpg",
-            postTime: "5h ago"),
+            postTime: "5h ago",
+            photos: const []),
         Post(
             personName: "Eric",
             address: "California",
@@ -39,7 +37,9 @@ class PostViewModel {
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
             personImage:
                 "https://cdn.pixabay.com/photo/2013/07/18/20/24/brad-pitt-164880_960_720.jpg",
-            postTime: "2h ago"),
+            messageImage: "",
+            postTime: "2h ago",
+            photos: const []),
         Post(
             personName: "Jack",
             address: "California",
@@ -51,7 +51,8 @@ class PostViewModel {
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
             personImage:
                 "https://cdn.pixabay.com/photo/2016/04/01/09/51/actor-1299629_960_720.png",
-            postTime: "3h ago"),
+            postTime: "3h ago",
+            photos: const []),
         Post(
             personName: "Neha",
             address: "Punjab",
@@ -63,7 +64,8 @@ class PostViewModel {
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
             personImage:
                 "https://cdn.pixabay.com/photo/2015/11/26/00/14/fashion-1063100_960_720.jpg",
-            postTime: "1d ago"),
+            postTime: "1d ago",
+            photos: const []),
         Post(
             personName: "Pawan",
             address: "New Delhi, India",
@@ -75,7 +77,8 @@ class PostViewModel {
                 "https://avatars0.githubusercontent.com/u/12619420?s=460&v=4",
             messageImage:
                 "https://cdn.pixabay.com/photo/2018/03/09/16/32/woman-3211957_1280.jpg",
-            postTime: "Just Now"),
+            postTime: "Just Now",
+            photos: const []),
         Post(
             personName: "Eric",
             address: "California",
@@ -85,7 +88,9 @@ class PostViewModel {
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
             personImage:
                 "https://cdn.pixabay.com/photo/2013/07/18/20/24/brad-pitt-164880_960_720.jpg",
-            postTime: "2h ago"),
+            messageImage: "",
+            postTime: "2h ago",
+            photos: const []),
         Post(
             personName: "Jack",
             address: "California",
@@ -97,7 +102,8 @@ class PostViewModel {
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
             personImage:
                 "https://cdn.pixabay.com/photo/2016/04/01/09/51/actor-1299629_960_720.png",
-            postTime: "3h ago"),
+            postTime: "3h ago",
+            photos: const []),
         Post(
             personName: "Amanda",
             address: "Canada",
@@ -109,7 +115,8 @@ class PostViewModel {
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
             personImage:
                 "https://cdn.pixabay.com/photo/2016/04/10/21/34/woman-1320810_960_720.jpg",
-            postTime: "5h ago"),
+            postTime: "5h ago",
+            photos: const []),
         Post(
             personName: "Neha",
             address: "Punjab",
@@ -121,6 +128,7 @@ class PostViewModel {
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
             personImage:
                 "https://cdn.pixabay.com/photo/2015/11/26/00/14/fashion-1063100_960_720.jpg",
-            postTime: "1d ago"),
+            postTime: "1d ago",
+            photos: const []),
       ];
 }

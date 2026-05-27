@@ -7,6 +7,8 @@ import 'package:flutter_uikit/utils/uidata.dart';
 enum LoginValidationType { phone, otp }
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   LoginPageState createState() {
     return LoginPageState();
@@ -27,8 +29,8 @@ class LoginPageState extends State<LoginPage> {
         ),
       );
 
-  showValidationError(LoginValidationType type) {
-    scaffoldState.currentState.showSnackBar(SnackBar(
+  void showValidationError(LoginValidationType type) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(type == LoginValidationType.phone
           ? UIData.enter_valid_number
           : UIData.enter_valid_otp),

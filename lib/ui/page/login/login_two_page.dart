@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_uikit/utils/uidata.dart';
 
 class LoginTwoPage extends StatelessWidget {
+  const LoginTwoPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,18 +14,17 @@ class LoginTwoPage extends StatelessWidget {
     );
   }
 
-  loginBody() => SingleChildScrollView(
+  SingleChildScrollView loginBody() => SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[loginHeader(), loginFields()],
         ),
       );
 
-  loginHeader() => Column(
+  Column loginHeader() => Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          FlutterLogo(
-            colors: Colors.green,
+          const FlutterLogo(
             size: 80.0,
           ),
           SizedBox(
@@ -43,7 +44,7 @@ class LoginTwoPage extends StatelessWidget {
         ],
       );
 
-  loginFields() => Container(
+  Container loginFields() => Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           mainAxisSize: MainAxisSize.min,
@@ -75,15 +76,15 @@ class LoginTwoPage extends StatelessWidget {
             Container(
               padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 30.0),
               width: double.infinity,
-              child: RaisedButton(
-                padding: EdgeInsets.all(12.0),
-                shape: StadiumBorder(),
-                child: Text(
-                  "SIGN IN",
-                  style: TextStyle(color: Colors.white),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  padding: const EdgeInsets.all(12.0),
+                  shape: const StadiumBorder(),
+                  foregroundColor: Colors.white,
                 ),
-                color: Colors.green,
                 onPressed: () {},
+                child: const Text("SIGN IN"),
               ),
             ),
             SizedBox(

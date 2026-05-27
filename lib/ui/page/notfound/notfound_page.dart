@@ -7,11 +7,11 @@ class NotFoundPage extends StatelessWidget {
   final title;
   final message;
   final IconData icon;
-  final String image;
+  final String? image;
   final iconColor;
 
-  NotFoundPage(
-      {this.appTitle = "Search",
+  const NotFoundPage(
+      {super.key, this.appTitle = "Search",
       this.title = "No Result",
       this.message = "Try a more general keyword.",
       this.icon = Icons.search,

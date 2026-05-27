@@ -12,26 +12,23 @@ class Product {
   List<ProductColor> colors;
   int quantity = 0;
 
-  
-
-  Product(
-      {this.name,
-      this.image,
-      this.brand,
-      this.price,
-      this.rating,
-      this.description,
-      this.totalReviews,
-      this.sizes,
-      this.colors,
-      this.quantity});
-
-  
+  Product({
+    required this.name,
+    required this.image,
+    required this.brand,
+    required this.price,
+    required this.rating,
+    required this.description,
+    required this.totalReviews,
+    required this.sizes,
+    required this.colors,
+    this.quantity = 0,
+  });
 }
 
 class ProductColor {
   final String colorName;
   final MaterialColor color;
 
-  ProductColor({this.colorName, this.color});
+  ProductColor({required this.colorName, required this.color});
 }

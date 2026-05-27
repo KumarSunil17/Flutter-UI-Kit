@@ -7,7 +7,13 @@ class CustomFloat extends StatelessWidget {
   final VoidCallback qrCallback;
   final isMini;
 
-  CustomFloat({this.icon, this.builder, this.qrCallback, this.isMini = false});
+  const CustomFloat({
+    super.key,
+    required this.icon,
+    required this.builder,
+    required this.qrCallback,
+    this.isMini = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +22,8 @@ class CustomFloat extends StatelessWidget {
       mini: isMini,
       onPressed: qrCallback,
       child: Ink(
-        decoration: new BoxDecoration(
-            gradient: new LinearGradient(colors: UIData.kitGradients)),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: UIData.kitGradients)),
         child: Stack(
           fit: StackFit.expand,
           children: <Widget>[
@@ -25,17 +31,15 @@ class CustomFloat extends StatelessWidget {
               icon,
               color: Colors.white,
             ),
-            builder != null
-                ? Positioned(
+            Positioned(
                     right: 7.0,
                     top: 7.0,
                     child: CircleAvatar(
                       backgroundColor: Colors.red,
-                      child: builder,
                       radius: 10.0,
+                      child: builder,
                     ),
-                  )
-                : Container(),
+                  ),
             // builder
           ],
         ),

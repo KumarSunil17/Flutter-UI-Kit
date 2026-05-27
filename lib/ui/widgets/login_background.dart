@@ -5,53 +5,52 @@ import 'package:flutter_uikit/utils/uidata.dart';
 class LoginBackground extends StatelessWidget {
   final showIcon;
   final image;
-  LoginBackground({this.showIcon = true, this.image});
+  LoginBackground({super.key, this.showIcon = true, this.image});
 
   Widget topHalf(BuildContext context) {
     var deviceSize = MediaQuery.of(context).size;
-    return new Flexible(
+    return Flexible(
       flex: 2,
       child: ClipPath(
-        clipper: new ArcClipper(),
+        clipper: ArcClipper(),
         child: Stack(
           children: <Widget>[
-            new Container(
-              decoration: new BoxDecoration(
-                  gradient: new LinearGradient(
+            Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
                 colors: UIData.kitGradients,
               )),
             ),
             showIcon
-                ? new Center(
+                ? Center(
                     child: SizedBox(
                         height: deviceSize.height / 8,
                         width: deviceSize.width / 2,
-                        child: FlutterLogo(
-                          colors: Colors.yellow,
-                        )),
-                  )
-                : new Container(
+                        child: const FlutterLogo(),
+                      ),
+                    )
+                : SizedBox(
                     width: double.infinity,
                     child: image != null
                         ? Image.network(
                             image,
                             fit: BoxFit.cover,
                           )
-                        : new Container())
+                        : Container())
           ],
         ),
       ),
     );
   }
 
-  final bottomHalf = new Flexible(
+  final bottomHalf = Flexible(
     flex: 3,
-    child: new Container(),
+    child: Container(),
   );
 
   @override
   Widget build(BuildContext context) {
-    return new Column(
+    return Column(
       children: <Widget>[topHalf(context), bottomHalf],
     );
   }

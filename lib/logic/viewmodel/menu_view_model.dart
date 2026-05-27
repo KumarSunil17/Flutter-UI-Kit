@@ -3,12 +3,8 @@ import 'package:flutter_uikit/model/menu.dart';
 import 'package:flutter_uikit/utils/uidata.dart';
 
 class MenuViewModel {
-  List<Menu> menuItems;
-
-  MenuViewModel({this.menuItems});
-
-  getMenuItems() {
-    return menuItems = <Menu>[
+  List<Menu> getMenuItems() {
+    return <Menu>[
       Menu(
           title: "Profile",
           menuColor: Color(0xff050505),

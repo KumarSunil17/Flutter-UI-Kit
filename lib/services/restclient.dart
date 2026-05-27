@@ -9,36 +9,39 @@ class RestClient {
     "ACCEPT": 'application/json',
   };
 
-  Future<MappedNetworkServiceResponse<T>> getAsync<T>(
-      String resourcePath) async {
-    var response = await http.get(resourcePath);
+  Future<MappedNetworkServiceResponse<T>> getAsync<T>(String resourcePath) async {
+    final response = await http.get(Uri.parse(resourcePath));
     return processResponse<T>(response);
   }
 
   Future<MappedNetworkServiceResponse<T>> postAsync<T>(
       String resourcePath, dynamic data) async {
-    var content = json.encoder.convert(data);
-    var response =
-        await http.post(resourcePath, body: content, headers: headers);
+    final content = jsonEncode(data);
+    final response = await http.post(
+      Uri.parse(resourcePath),
+      body: content,
+      headers: headers,
+    );
     return processResponse<T>(response);
   }
 
   MappedNetworkServiceResponse<T> processResponse<T>(http.Response response) {
-    if (!((response.statusCode < 200) ||
-        (response.statusCode >= 300) ||
-        (response.body == null))) {
-      var jsonResult = response.body;
-      dynamic resultClass = jsonDecode(jsonResult);
+    if (response.statusCode >= 200 &&
+        response.statusCode < 300 &&
+        response.body.isNotEmpty) {
+      final resultClass = jsonDecode(response.body);
 
-      return new MappedNetworkServiceResponse<T>(
+      return MappedNetworkServiceResponse<T>(
           mappedResult: resultClass,
-          networkServiceResponse: new NetworkServiceResponse<T>(success: true));
+          networkServiceResponse:
+              NetworkServiceResponse<T>(success: true));
     } else {
-      var errorResponse = response.body;
-      return new MappedNetworkServiceResponse<T>(
-          networkServiceResponse: new NetworkServiceResponse<T>(
+      final errorResponse = response.body;
+      return MappedNetworkServiceResponse<T>(
+          networkServiceResponse: NetworkServiceResponse<T>(
               success: false,
-              message: "(${response.statusCode}) ${errorResponse.toString()}"));
+              message:
+                  "(${response.statusCode}) ${errorResponse.toString()}"));
     }
   }
 }

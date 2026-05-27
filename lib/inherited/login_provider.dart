@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 
 class LoginProvider extends InheritedWidget {
   final Function validationErrorCallback;
-  final Widget child;
 
-  LoginProvider({this.validationErrorCallback, this.child})
-      : super(child: child);
+  const LoginProvider({
+    super.key,
+    required this.validationErrorCallback,
+    required super.child,
+  });
 
-  static LoginProvider of(BuildContext context) =>
-      context.inheritFromWidgetOfExactType(LoginProvider);
+  static LoginProvider of(BuildContext context) {
+    final provider =
+        context.dependOnInheritedWidgetOfExactType<LoginProvider>();
+    assert(provider != null, 'LoginProvider not found in context');
+    return provider!;
+  }
 
   @override
   bool updateShouldNotify(LoginProvider oldWidget) =>

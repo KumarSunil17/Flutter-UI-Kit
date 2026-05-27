@@ -62,14 +62,16 @@ class MyApp extends StatelessWidget {
         UIData.dashboardOneRoute: (BuildContext context) => DashboardOnePage(),
         UIData.dashboardTwoRoute: (BuildContext context) => DashboardTwoPage(),
       },
-      onUnknownRoute: (RouteSettings rs) => new MaterialPageRoute(
-          builder: (context) => new NotFoundPage(
+      onUnknownRoute: (RouteSettings rs) => MaterialPageRoute(
+          builder: (context) => NotFoundPage(
                 appTitle: UIData.coming_soon,
-                icon: FontAwesomeIcons.solidSmile,
+                icon: FontAwesomeIcons.faceSmile,
                 title: UIData.coming_soon,
                 message: "Under Development",
                 iconColor: Colors.green,
               )));
+
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {

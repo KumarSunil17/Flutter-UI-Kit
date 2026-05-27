@@ -6,5 +6,5 @@ class CartViewModel {
   void addQuantity() => product.quantity < 10 ? product.quantity++ : null;
   void deleteQuantity() => product.quantity > 0 ? product.quantity-- : null;
 
-  CartViewModel({this.product});
+  CartViewModel({required this.product});
 }
